@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dharru ❤️ Sohail - Red Dress Lunch</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+overflow:hidden;
+background:linear-gradient(135deg,#ff1744,#ff4b2b,#ff9800);
+}
+
+.card{
+width:100%;
+max-width:580px;
+background:rgba(255,255,255,0.14);
+backdrop-filter:blur(14px);
+padding:35px;
+border-radius:28px;
+text-align:center;
+color:white;
+box-shadow:0 18px 45px rgba(0,0,0,.25);
+animation:fade .5s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+h1{
+font-size:2rem;
+margin-bottom:14px;
+}
+
+p{
+font-size:1.08rem;
+line-height:1.6;
+margin-bottom:22px;
+}
+
+button{
+padding:12px 24px;
+border:none;
+border-radius:30px;
+font-size:1rem;
+font-weight:bold;
+cursor:pointer;
+margin:8px;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+.next{
+background:#fff;
+color:#ff1744;
+}
+
+.yes{
+background:#d50000;
+color:white;
+}
+
+.no{
+background:#eee;
+color:#111;
+}
+
+.big{
+font-size:3rem;
+margin-bottom:12px;
+animation:bounce 1s infinite;
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-8px);}
+}
+
+.answer{
+margin-top:12px;
+font-size:1rem;
+font-weight:bold;
+color:#fff9c4;
+}
+
+.small{
+font-size:.95rem;
+opacity:.95;
+margin-top:8px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="card" id="app"></div>
+
+<script>
+
+let step = 1;
+
+function render(){
+
+const app = document.getElementById("app");
+
+if(step===1){
+app.innerHTML=`
+<div class="big">🌙</div>
+<h1>Hello Dharru ❤️</h1>
+<p>
+I asked the moon...<br><br>
+"How can I see you in the morning?"<br><br>
+
+Moon replied...<br>
+"Wait till afternoon...<br>
+Dharru shines brighter than me." 😍
+</p>
+<button class="next" onclick="next()">Continue 💖</button>
+`;
+}
+
+if(step===2){
+app.innerHTML=`
+<div class="big">🤔</div>
+<h1>Question No.1</h1>
+<p>What is Sohail to you? 😌</p>
+
+<button class="next" onclick="showAnswer('Favourite person 😍')">Favourite 😍</button>
+<button class="next" onclick="showAnswer('Special one ❤️')">Special ❤️</button>
+<button class="next" onclick="showAnswer('Cute headache 😂')">Headache 😂</button>
+
+<div class="answer" id="ans"></div>
+
+<button class="yes" onclick="next()">Next ➜</button>
+`;
+}
+
+if(step===3){
+app.innerHTML=`
+<div class="big">🥺</div>
+<h1>Question No.2</h1>
+<p>Do you miss Sohail sometimes? 😏</p>
+
+<button class="next" onclick="showAnswer('Yes... every day secretly 😘')">Yes 😍</button>
+<button class="next" onclick="showAnswer('Little little 🤭')">Maybe 🤭</button>
+<button class="next" onclick="showAnswer('Lie detected 😂')">No 🙈</button>
+
+<div class="answer" id="ans"></div>
+
+<button class="yes" onclick="next()">Continue 💘</button>
+`;
+}
+
+if(step===4){
+app.innerHTML=`
+<div class="big">🙏</div>
+<h1>One Honest Sorry</h1>
+<p>
+If I ever made you feel alone,<br>
+less valued,<br>
+or not cared for...<br><br>
+
+I'm truly sorry Dharru 🥺❤️
+</p>
+<button class="next" onclick="next()">Continue 💖</button>
+`;
+}
+
+if(step===5){
+app.innerHTML=`
+<div class="big">🍽️</div>
+<h1>Lunch Invitation</h1>
+<p>
+So Miss Dharru 😍<br><br>
+
+Would you join Sohail<br>
+for an afternoon lunch today? ❤️<br><br>
+
+📍 Location: Our cute little date spot 😉<br>
+👗 Dress Code: Wear RED ❤️<br>
+😎 Sohail dress code: Trying to impress you
+</p>
+
+<button class="yes" onclick="next()">Yes I'll Come 😘</button>
+<button class="no" onclick="run(this)">No 🙈</button>
+`;
+}
+
+if(step===6){
+app.innerHTML=`
+<div class="big">🤣</div>
+<h1>Booking Confirmed</h1>
+<p>
+Table reserved for 2 😂❤️<br><br>
+
+Guest 1: Gorgeous Dharru in RED 😍<br>
+Guest 2: Nervous Sohail 😎<br><br>
+
+Mission today:<br>
+Eat 🍝<br>
+Laugh 😂<br>
+Look cute ❤️
+</p>
+
+<button class="yes" onclick="restart()">Again 😂</button>
+`;
+}
+
+}
+
+function next(){
+step++;
+render();
+}
+
+function restart(){
+step=1;
+render();
+}
+
+function run(btn){
+btn.style.position="absolute";
+btn.style.left=Math.random()*70+"%";
+btn.style.top=Math.random()*75+"%";
+}
+
+function showAnswer(text){
+document.getElementById("ans").innerHTML=text;
+}
+
+render();
+
+</script>
+
+</body>
+</html>
